@@ -1,0 +1,623 @@
+# Omega House Studio LLC
+
+# Music Intelligence (M.I.)
+
+## Coding Standards v1.0
+
+**Document Version:** 1.0
+**Project:** Music Intelligence (M.I.)
+**Organization:** Omega House Studio LLC
+**Status:** Approved Foundation
+**Date:** July 9, 2026
+
+---
+
+# Purpose
+
+The purpose of this document is to establish coding standards for the Music Intelligence platform.
+
+These standards ensure that the codebase remains readable, maintainable, testable, scalable, and consistent regardless of project size or the number of contributors.
+
+The objective is not simply to write code that works.
+
+The objective is to write code that remains understandable years after it was written.
+
+---
+
+# Engineering Philosophy
+
+Code is a long-term asset.
+
+Every line of code should make the project easier to improve, not harder.
+
+Readable software is maintainable software.
+
+Maintainable software becomes reliable software.
+
+Reliable software builds trust.
+
+---
+
+# Core Principles
+
+Every engineer working on M.I. should follow these principles.
+
+## Simplicity
+
+The simplest correct solution should be preferred.
+
+Avoid unnecessary abstraction.
+
+Avoid unnecessary optimization.
+
+Avoid unnecessary complexity.
+
+---
+
+## Readability
+
+Write code that another developer can understand quickly.
+
+Good code explains itself through structure and naming.
+
+---
+
+## Single Responsibility
+
+Each function should perform one task.
+
+Each class should solve one problem.
+
+Each module should have one purpose.
+
+---
+
+## Separation of Concerns
+
+Do not combine unrelated responsibilities.
+
+Examples:
+
+User Interface
+
+↓
+
+Business Logic
+
+↓
+
+AI Logic
+
+↓
+
+Database
+
+↓
+
+Audio Processing
+
+Each belongs in its own layer.
+
+---
+
+# File Organization
+
+Every file should have a clear responsibility.
+
+Bad
+
+```
+chat.py
+
+Handles:
+
+Chat
+
+Memory
+
+Database
+
+Audio
+
+Configuration
+
+Authentication
+```
+
+Good
+
+```
+chat.py
+
+Only manages conversation routing.
+```
+
+---
+
+# Folder Structure
+
+```
+backend/
+
+api/
+
+chat/
+
+agents/
+
+knowledge/
+
+memory/
+
+artist/
+
+audio/
+
+plugin/
+
+config/
+
+database/
+
+tests/
+
+utilities/
+
+models/
+```
+
+Each directory represents one system.
+
+---
+
+# Naming Standards
+
+Variable Names
+
+Use descriptive names.
+
+Good
+
+```
+current_song
+
+artist_profile
+
+mix_analysis
+```
+
+Avoid
+
+```
+x
+
+data
+
+temp
+
+thing
+
+object1
+```
+
+---
+
+Function Names
+
+Functions should describe actions.
+
+Examples
+
+```
+generate_response()
+
+load_artist_profile()
+
+save_memory()
+
+analyze_audio()
+
+calculate_lufs()
+```
+
+Avoid vague names.
+
+---
+
+Class Names
+
+Classes represent objects.
+
+Examples
+
+```
+ArtistProfile
+
+KnowledgeEngine
+
+MemoryManager
+
+AudioAnalyzer
+
+ConversationManager
+```
+
+---
+
+Constants
+
+Constants use uppercase.
+
+```
+MAX_CONTEXT_LENGTH
+
+DEFAULT_SAMPLE_RATE
+
+MAX_UPLOAD_SIZE
+```
+
+---
+
+# Function Standards
+
+Functions should:
+
+* Do one thing.
+* Have descriptive names.
+* Return predictable outputs.
+* Avoid hidden side effects.
+* Handle errors gracefully.
+
+Aim for concise functions. If a function becomes difficult to understand, consider breaking it into smaller pieces.
+
+---
+
+# Comments
+
+Comments explain why.
+
+Code explains how.
+
+Good
+
+```
+Maintain chronological ordering so the Artist DNA engine can summarize user growth over time.
+```
+
+Bad
+
+```
+Increment i by 1.
+```
+
+---
+
+# Documentation
+
+Every module should include:
+
+Purpose
+
+Inputs
+
+Outputs
+
+Dependencies
+
+Known limitations
+
+Future improvements
+
+---
+
+# Error Handling
+
+Errors should never fail silently.
+
+Instead:
+
+Detect
+
+↓
+
+Log
+
+↓
+
+Recover when possible
+
+↓
+
+Provide useful information
+
+Every error should help diagnose the problem.
+
+---
+
+# Logging
+
+Use structured logging.
+
+Example categories:
+
+INFO
+
+WARNING
+
+ERROR
+
+DEBUG
+
+Logs should answer:
+
+What happened?
+
+When?
+
+Where?
+
+Why?
+
+---
+
+# Configuration
+
+Configuration belongs outside source code.
+
+Examples:
+
+API keys
+
+Model selection
+
+Ports
+
+Directories
+
+Limits
+
+Use environment variables or configuration files.
+
+---
+
+# Dependencies
+
+Only introduce new libraries when they provide clear value.
+
+Before adding a dependency ask:
+
+Can we solve this with existing tools?
+
+Does this dependency have active maintenance?
+
+Does it increase security or licensing risk?
+
+Will it still be appropriate in five years?
+
+---
+
+# Git Standards
+
+Commit often.
+
+Each commit should represent one logical change.
+
+Good commit messages:
+
+```
+Add chat request routing
+
+Implement conversation handler
+
+Refactor knowledge module
+
+Fix response formatting
+```
+
+Avoid:
+
+```
+stuff
+
+update
+
+fix
+
+changes
+```
+
+---
+
+# Branch Strategy
+
+Suggested workflow:
+
+```
+main
+
+development
+
+feature/chat
+
+feature/memory
+
+feature/audio
+
+feature/plugin
+
+bugfix/api
+
+release/v1.0
+```
+
+Main should always remain stable.
+
+---
+
+# Testing Requirements
+
+Every feature should include testing.
+
+Testing should verify:
+
+Expected behavior
+
+Edge cases
+
+Failure conditions
+
+Regression prevention
+
+No feature is complete without testing.
+
+---
+
+# AI Module Standards
+
+Every AI component should have a defined purpose.
+
+Example:
+
+Conversation Engine
+
+Purpose:
+
+Generate conversational responses.
+
+Inputs:
+
+User message
+
+Context
+
+Outputs:
+
+Structured response
+
+No module should attempt to perform every task.
+
+---
+
+# Performance
+
+Optimize only after measuring.
+
+Never sacrifice readability for hypothetical performance gains.
+
+When optimization is required:
+
+Measure
+
+Improve
+
+Measure again
+
+Document the results
+
+---
+
+# Security
+
+Never expose:
+
+API keys
+
+Passwords
+
+Tokens
+
+Private credentials
+
+Sensitive user information
+
+Security is a feature, not an afterthought.
+
+---
+
+# Refactoring
+
+Refactor when:
+
+Complexity increases
+
+Code duplication appears
+
+Architecture becomes unclear
+
+Documentation becomes inaccurate
+
+Refactoring should improve clarity without changing behavior.
+
+---
+
+# Technical Debt
+
+Technical debt must be documented.
+
+If a shortcut is taken:
+
+Explain why
+
+Describe the limitation
+
+Create a task to resolve it
+
+Undocumented technical debt is unacceptable.
+
+---
+
+# Code Review Checklist
+
+Before code is merged:
+
+✓ Code builds successfully
+
+✓ Tests pass
+
+✓ Documentation updated
+
+✓ Naming follows standards
+
+✓ Architecture preserved
+
+✓ No secrets committed
+
+✓ No unnecessary complexity introduced
+
+✓ Logging included where appropriate
+
+✓ Errors handled correctly
+
+---
+
+# Definition of Done
+
+Code is complete when:
+
+It works.
+
+It is understandable.
+
+It is documented.
+
+It has been tested.
+
+It follows architecture.
+
+It follows engineering standards.
+
+It can be maintained by another engineer.
+
+---
+
+# Guiding Principle
+
+Every file in Music Intelligence should answer one question:
+
+**"Will another engineer understand this six months from now without asking the original author?"**
+
+If the answer is no, the code should be improved before it is considered complete.
+
+---
+
+**End of Coding Standards v1.0**
